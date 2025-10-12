@@ -24,7 +24,7 @@ export default function OrderPage() {
           <Card
             key={order.id}
             className={cn(
-              "h-20 justify-center hover:transition-transform hover:scale-[1.01] cursor-pointer w-full rounded-sm shadow lg:h-24",
+              "h-20 justify-center hover:transition-transform hover:scale-[1.02] cursor-pointer w-full rounded-sm shadow lg:h-24",
               order.status === "Ocupado" ? "bg-red-50" : "bg-emerald-50"
             )}
           >
