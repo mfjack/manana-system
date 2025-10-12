@@ -5,7 +5,7 @@ import { Button } from "./ui/button";
 const menuItems = [
   {
     label: "Comanda",
-    href: "/order",
+    href: "/",
     icon: <Clipboard />,
   },
   {
