@@ -39,7 +39,7 @@ export default function OrderPage() {
             </Card>
           ))
         ) : (
-          <p className="text-muted-foreground text-lg">Nenhuma comanda em aberto</p>
+          <p className="text-muted-foreground text-lg text-nowrap">Nenhuma comanda em aberto</p>
         )}
       </div>
     </section>
