@@ -17,15 +17,15 @@ const menuItems = [
 
 export function Sidebar() {
   return (
-    <section className="h-full p-3 border-r lg:w-64 flex flex-col justify-between">
+    <section className="h-full p-4 border-r lg:w-64 flex flex-col justify-between">
       <nav>
-        <ul className="flex flex-col gap-2 mt-6">
+        <ul className="flex flex-col gap-2">
           {menuItems.map((item) => (
             <li key={item.label}>
               <Button
                 asChild
                 variant="ghost"
-                className="flex items-center gap-2 border p-2 rounded-sm w-fit justify-start lg:h-12 lg:w-full "
+                className="flex items-center gap-2 border p-3 rounded-sm w-fit justify-start h-10 lg:h-12 lg:w-full "
               >
                 <Link href={item.href}>
                   <span>{item.icon}</span>

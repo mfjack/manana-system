@@ -12,14 +12,13 @@ type Order = {
 const orders: Order[] = [
   { id: 1, status: "Livre" },
   { id: 2, status: "Ocupado" },
+  { id: 3, status: "Ocupado" },
 ];
 
 export default function OrderPage() {
   return (
     <section className="h-screen p-6 flex flex-col overflow-y-auto">
-      <h1>Comandas</h1>
-
-      <div className="flex flex-col mt-8 gap-6 items-center sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+      <div className="flex flex-col gap-6 items-center sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
         {orders.map((order) => (
           <Card
             key={order.id}
