@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { AddOrder } from "./components/add-order";
 import { useGetOrders } from "./query/get-order";
 import { Spinner } from "@/components/ui/spinner";
+import { OrderStatus } from "@prisma/client";
 
 export function OrderItem() {
   const STATUS_TRANSLATIONS = {
@@ -33,14 +34,17 @@ export function OrderItem() {
               key={order.id}
               className={cn(
                 "h-16 justify-center hover:transition-transform hover:scale-[1.02] cursor-pointer w-full rounded-sm shadow lg:h-24",
-                order.status === "OCCUPIED" ? "bg-red-50" : "bg-emerald-50"
+                order.status === OrderStatus.OCCUPIED ? "bg-red-50" : "bg-emerald-50"
               )}
             >
               <CardContent className="flex flex-col justify-between">
                 <div className="flex items-center justify-between">
                   <h2 className="text-xl font-medium">{order.orderNumber}</h2>
                   <Badge
-                    className={cn("text-md rounded-sm", order.status === "OCCUPIED" ? "bg-red-500" : "bg-emerald-500")}
+                    className={cn(
+                      "text-md rounded-sm",
+                      order.status === OrderStatus.OCCUPIED ? "bg-red-500" : "bg-emerald-500"
+                    )}
                   >
                     {STATUS_TRANSLATIONS[order.status as keyof typeof STATUS_TRANSLATIONS]}
                   </Badge>
