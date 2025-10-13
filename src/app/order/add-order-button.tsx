@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
 
 const formOrderSchema = z.object({
   orderName: z.string().min(2, { message: "Digite o nome da comanda" }),
@@ -16,6 +17,8 @@ const formOrderSchema = z.object({
 type FormOrderSchema = z.infer<typeof formOrderSchema>;
 
 export function AddOrderButton() {
+  const [isOpenModal, setIsOpenModal] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -28,11 +31,15 @@ export function AddOrderButton() {
   function handleSendForm(data: FormOrderSchema) {
     console.log("Comanda criada com sucesso!", data);
     reset();
+    setIsOpenModal(false);
   }
 
   return (
     <div className="flex items-center justify-between">
-      <Dialog>
+      <Dialog
+        open={isOpenModal}
+        onOpenChange={setIsOpenModal}
+      >
         <DialogTrigger asChild>
           <Button>Abrir comanda</Button>
         </DialogTrigger>
