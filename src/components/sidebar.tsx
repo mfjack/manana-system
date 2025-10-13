@@ -1,8 +1,13 @@
-import { BookOpen, Clipboard } from "lucide-react";
+import { BookOpen, Clipboard, HandCoins } from "lucide-react";
 import Link from "next/link";
 import { Button } from "./ui/button";
 
 const menuItems = [
+  {
+    label: "PDV",
+    href: "/pdv",
+    icon: <HandCoins />,
+  },
   {
     label: "Comanda",
     href: "/",
