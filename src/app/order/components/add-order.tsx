@@ -5,19 +5,15 @@ import { Dialog, DialogClose, DialogContent, DialogHeader, DialogTitle, DialogTr
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
+import { useCreateOrder } from "../mutation/create-order";
+import { formOrderSchema, FormOrderSchema } from "./schema";
+import { AddOrderProps } from "../types";
 
-const formOrderSchema = z.object({
-  orderName: z.string().min(2, { message: "Digite o nome da comanda" }),
-  orderNumber: z.string().min(1, { message: "Digite o número da comanda" }),
-});
-
-type FormOrderSchema = z.infer<typeof formOrderSchema>;
-
-export function AddOrder() {
+export function AddOrder({ onOrderCreated }: AddOrderProps) {
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const { createOrder } = useCreateOrder();
 
   const {
     register,
@@ -28,10 +24,16 @@ export function AddOrder() {
     resolver: zodResolver(formOrderSchema),
   });
 
-  function handleSendForm(data: FormOrderSchema) {
-    console.log("Comanda criada com sucesso!", data);
-    reset();
-    setIsOpenModal(false);
+  async function handleSendForm(data: FormOrderSchema) {
+    const result = await createOrder(data);
+
+    if (result.success) {
+      reset();
+      setIsOpenModal(false);
+      onOrderCreated();
+    } else {
+      console.error("Erro ao criar comanda:", result.error);
+    }
   }
 
   return (
