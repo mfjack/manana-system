@@ -33,7 +33,7 @@ export function OrderItem() {
             <Card
               key={order.id}
               className={cn(
-                "h-16 justify-center hover:transition-transform hover:scale-[1.02] cursor-pointer w-full rounded-sm shadow lg:h-24",
+                "justify-center hover:transition-transform hover:scale-[1.02] cursor-pointer w-full rounded-sm shadow h-24",
                 order.status === OrderStatus.OCCUPIED ? "bg-red-50" : "bg-emerald-50"
               )}
             >
@@ -49,7 +49,7 @@ export function OrderItem() {
                     {STATUS_TRANSLATIONS[order.status as keyof typeof STATUS_TRANSLATIONS]}
                   </Badge>
                 </div>
-                <h3 className="text-sm font-medium mt-4 text-muted-foreground">{order.orderName}</h3>
+                <h3 className="text-md font-medium mt-2 text-muted-foreground">{order.orderName}</h3>
               </CardContent>
             </Card>
           ))
