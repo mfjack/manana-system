@@ -1,7 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { AddOrderButton } from "./add-order-button";
+import { AddOrder } from "./add-order";
 
 type status = "Livre" | "Ocupado";
 
@@ -36,7 +36,7 @@ const orders: Order[] = [
 export function OrderItem() {
   return (
     <section className="h-screen p-4 lg:p-6 flex flex-col overflow-y-auto">
-      <AddOrderButton />
+      <AddOrder />
       <div className="flex flex-col gap-6 items-start sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 mt-6">
         {orders.length > 0 ? (
           orders.map((order) => (

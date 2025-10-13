@@ -16,7 +16,7 @@ const formOrderSchema = z.object({
 
 type FormOrderSchema = z.infer<typeof formOrderSchema>;
 
-export function AddOrderButton() {
+export function AddOrder() {
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   const {
