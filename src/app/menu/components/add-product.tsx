@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogClose, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { formatCurrency } from "@/lib/format-price";
+import { formatCurrency, parseCurrencyToNumber } from "@/lib/format-price";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Label } from "@radix-ui/react-label";
 import { useState, useRef } from "react";
@@ -53,7 +53,7 @@ export function AddProduct() {
       }
 
       // Converter preço de string formatada para número
-      const priceNumber = parseFloat(data.price.replace(/[R$\s.,]/g, "").replace(",", ".")) || 0;
+      const priceNumber = parseCurrencyToNumber(data.price);
 
       // Preparar dados para envio
       const productData = {

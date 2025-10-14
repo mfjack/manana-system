@@ -1,5 +1,6 @@
 "use client";
 
+import { formatCurrency } from "@/lib/format-price";
 import { ColumnDef } from "@tanstack/react-table";
 import Image from "next/image";
 
@@ -48,11 +49,7 @@ export const columns: ColumnDef<MenuItem>[] = [
     accessorKey: "price",
     header: "Preço",
     cell: ({ row }) => {
-      const price = parseFloat(row.getValue("price"));
-      const formatted = new Intl.NumberFormat("pt-BR", {
-        style: "currency",
-        currency: "BRL",
-      }).format(price);
+      const formatted = formatCurrency(row.getValue("price"));
       return formatted;
     },
   },
