@@ -5,21 +5,11 @@ import { Dialog, DialogClose, DialogContent, DialogHeader, DialogTitle, DialogTr
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { formatCurrency } from "@/lib/format-price";
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Label } from "@radix-ui/react-label";
 import { useState, useRef } from "react";
 import { useForm } from "react-hook-form";
-import z from "zod";
-
-const formAddProductSchema = z.object({
-  name: z.string().min(3, "O nome do item é obrigatório"),
-  description: z.string().min(10, "A descrição do item é obrigatória"),
-  price: z.string().min(1, "O preço do item é obrigatório"),
-  picture: z.any().optional(),
-});
-
-type FormAddProduct = z.infer<typeof formAddProductSchema>;
+import { FormAddProduct, formAddProductSchema } from "./schema";
 
 export function AddProduct() {
   const [isOpenModal, setIsOpenModal] = useState(false);
