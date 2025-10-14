@@ -27,6 +27,7 @@ export function AddProduct() {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<FormAddProduct>({
     resolver: zodResolver(formAddProductSchema),
   });
@@ -55,6 +56,8 @@ export function AddProduct() {
 
     // Aqui você pode implementar a lógica para enviar os dados para sua API
     // incluindo o upload da imagem
+    setIsOpenModal(false);
+    reset();
   }
 
   return (
