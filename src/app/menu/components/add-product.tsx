@@ -7,7 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { formatCurrency, parseCurrencyToNumber } from "@/lib/format-price";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Label } from "@radix-ui/react-label";
-import { useState, useRef, useCallback } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FormAddProduct, formAddProductSchema } from "./schema";
 import { useCreateProduct } from "../mutation/use-create-product";
@@ -21,8 +21,6 @@ export function AddProduct() {
     handleSubmit,
     formState: { errors },
     reset,
-    setValue,
-    watch,
   } = useForm<FormAddProduct>({
     resolver: zodResolver(formAddProductSchema),
   });
@@ -82,9 +80,12 @@ export function AddProduct() {
               id="price"
               type="text"
               placeholder="R$ 0,00"
-              {...register("price")}
-              onChange={(e) => setValue("price", parseCurrencyToNumber(e.target.value))}
-              value={watch("price") ?? ""}
+              {...register("price", {
+                setValueAs: parseCurrencyToNumber,
+                onChange: (e) => {
+                  e.target.value = formatCurrency(e.target.value);
+                },
+              })}
             />
             {errors.price && <p className="text-red-500 text-xs mt-1">{errors.price.message}</p>}
           </div>
