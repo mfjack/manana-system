@@ -44,7 +44,7 @@ export function AddOrder({ onOrderCreated }: AddOrderProps) {
         onOpenChange={setIsOpenModal}
       >
         <DialogTrigger asChild>
-          <Button>Abrir comanda</Button>
+          <Button>Abrir uma nova comanda</Button>
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
