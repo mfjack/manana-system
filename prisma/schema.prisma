@@ -24,13 +24,10 @@ model Order {
 
 model Product {
   id          String  @id @default(cuid())
+  image       String?
   name        String
   description String?
-  photo       String?
   price       Float
-  isActive    Boolean @default(true)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
 
   orderItems OrderItem[]
 
