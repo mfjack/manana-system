@@ -14,7 +14,7 @@ export type MenuItem = {
 export const columns: ColumnDef<MenuItem>[] = [
   {
     accessorKey: "picture",
-    header: "Imagem do Prato",
+    header: "Imagem",
     cell: ({ row }) => {
       const picture = row.getValue("picture") as string;
       const name = row.getValue("name") as string;
@@ -34,7 +34,7 @@ export const columns: ColumnDef<MenuItem>[] = [
   },
   {
     accessorKey: "name",
-    header: "Nome do Prato",
+    header: "Nome",
   },
   {
     accessorKey: "description",

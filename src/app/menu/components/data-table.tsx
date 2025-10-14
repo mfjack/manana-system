@@ -17,7 +17,7 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
   });
 
   return (
-    <div className="overflow-hidden rounded-md border mt-8">
+    <div className="overflow-auto [&::-webkit-scrollbar]:hidden rounded border mt-6">
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
@@ -50,7 +50,7 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
                 colSpan={columns.length}
                 className="h-24 text-center"
               >
-                Adicionar itens ao cardápio.
+                Não há produtos no cardápio.
               </TableCell>
             </TableRow>
           )}
