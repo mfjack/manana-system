@@ -20,7 +20,7 @@ export const columns: ColumnDef<MenuItem>[] = [
       const name = row.getValue("name") as string;
 
       return (
-        <div className="relative w-16 h-16 rounded overflow-hidden">
+        <div className="relative w-20 h-20 rounded overflow-hidden">
           <Image
             src={picture}
             alt={`Imagem do ${name}`}
