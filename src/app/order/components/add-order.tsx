@@ -10,10 +10,11 @@ import { useState } from "react";
 import { useCreateOrder } from "../mutation/use-create-order";
 import { formOrderSchema, FormOrderSchema } from "./schema";
 import { AddOrderProps } from "../types";
+import { Spinner } from "@/components/ui/spinner";
 
 export function AddOrder({ onOrderCreated }: AddOrderProps) {
   const [isOpenModal, setIsOpenModal] = useState(false);
-  const { createOrder } = useCreateOrder();
+  const { createOrder, loading } = useCreateOrder();
 
   const {
     register,
@@ -76,7 +77,13 @@ export function AddOrder({ onOrderCreated }: AddOrderProps) {
             </div>
 
             <div className="flex items-center justify-end gap-2 mt-6 w-full">
-              <Button type="submit">Adicionar</Button>
+              <Button
+                type="submit"
+                disabled={loading}
+                className="min-w-24"
+              >
+                {loading ? <Spinner /> : "Adicionar"}
+              </Button>
               <DialogClose asChild>
                 <Button variant="secondary">Cancelar</Button>
               </DialogClose>
