@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { AddOrder } from "./components/add-order";
-import { useGetOrders } from "./query/get-order";
+import { useGetOrders } from "./query/use-get-order";
 import { Spinner } from "@/components/ui/spinner";
 import { OrderStatus } from "@prisma/client";
 
@@ -42,7 +42,7 @@ export function OrderItem() {
                   <h2 className="text-xl font-medium">{order.orderNumber}</h2>
                   <Badge
                     className={cn(
-                      "text-md rounded-sm",
+                      "text-sm rounded-sm",
                       order.status === OrderStatus.OCCUPIED ? "bg-red-500" : "bg-emerald-500"
                     )}
                   >
