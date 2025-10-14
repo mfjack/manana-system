@@ -8,7 +8,7 @@ import { useGetOrders } from "./query/use-get-order";
 import { Spinner } from "@/components/ui/spinner";
 import { OrderStatus } from "@prisma/client";
 
-export function OrderItem() {
+export default function OrderPage() {
   const STATUS_TRANSLATIONS = {
     FREE: "Livre",
     OCCUPIED: "Ocupada",

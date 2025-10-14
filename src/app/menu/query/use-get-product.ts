@@ -1,31 +1,21 @@
-import { useState, useEffect } from "react";
-import { MenuItem } from "../components/colums";
+import { useQuery } from "@tanstack/react-query";
+import { MenuItem } from "../types";
+
+async function fetchProducts(): Promise<MenuItem[]> {
+  const response = await fetch("/api/products");
+
+  if (!response.ok) {
+    throw new Error(`Erro ao carregar produtos: ${response.status}`);
+  }
+
+  return response.json();
+}
 
 export function useGetProduct() {
-  const [products, setProducts] = useState<MenuItem[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        setLoading(true);
-        const response = await fetch("/api/products");
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const data = await response.json();
-        setProducts(data);
-      } catch (error) {
-        console.error("Erro ao carregar produtos:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProducts();
-  }, []);
+  const { data: products = [], isLoading: loading } = useQuery({
+    queryKey: ["products"],
+    queryFn: fetchProducts,
+  });
 
   return { products, loading };
 }

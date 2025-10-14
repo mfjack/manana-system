@@ -26,14 +26,13 @@ export function AddOrder({ onOrderCreated }: AddOrderProps) {
   });
 
   async function handleSendForm(data: FormOrderSchema) {
-    const result = await createOrder(data);
-
-    if (result.success) {
+    try {
+      await createOrder(data);
       reset();
       setIsOpenModal(false);
       onOrderCreated();
-    } else {
-      console.error("Erro ao criar comanda:", result.error);
+    } catch (error) {
+      console.error("Erro ao criar comanda:", error);
     }
   }
 

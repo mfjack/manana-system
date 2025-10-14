@@ -64,22 +64,16 @@ export function AddProduct() {
       };
 
       // Enviar dados para a API
-      const result = await createProduct(productData);
+      await createProduct(productData);
 
-      if (result.success) {
-        alert("Produto adicionado com sucesso!");
-        setIsOpenModal(false);
-        reset();
-        // Limpar o input de arquivo
-        if (fileInputRef.current) {
-          fileInputRef.current.value = "";
-        }
-      } else {
-        alert(result.error || "Erro ao adicionar produto");
+      setIsOpenModal(false);
+      reset();
+      // Limpar o input de arquivo
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
       }
     } catch (error) {
       console.error("Erro ao adicionar produto:", error);
-      alert("Erro inesperado ao adicionar produto");
     }
   }
 

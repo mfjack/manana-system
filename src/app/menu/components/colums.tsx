@@ -3,14 +3,7 @@
 import { formatCurrency } from "@/lib/format-price";
 import { ColumnDef } from "@tanstack/react-table";
 import Image from "next/image";
-
-export type MenuItem = {
-  id: string;
-  image?: string;
-  name: string;
-  description: string;
-  price: number;
-};
+import { MenuItem } from "../types";
 
 export const columns: ColumnDef<MenuItem>[] = [
   {
@@ -31,7 +24,7 @@ export const columns: ColumnDef<MenuItem>[] = [
               sizes="64px"
             />
           ) : (
-            <div className="text-gray-400 text-xs text-center px-2">Sem imagem</div>
+            <div className="text-gray-400 text-xs text-center">Sem imagem</div>
           )}
         </div>
       );
