@@ -24,6 +24,7 @@ export function Sidebar() {
   return (
     <section className="min-h-screen p-4 border-r lg:w-64 flex flex-col justify-between">
       <nav>
+        <h1 className="font-pacifico text-4xl text-center mb-4">Mañana</h1>
         <ul className="flex flex-col gap-3">
           {menuItems.map((item) => (
             <li key={item.label}>

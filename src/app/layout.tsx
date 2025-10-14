@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
 import "./styles/globals.css";
 import { Sidebar } from "@/components/sidebar";
-import { Saira } from "next/font/google";
+import { Saira, Caveat } from "next/font/google";
 
 const saira = Saira({ subsets: ["latin"] });
+const pacifico = Caveat({
+  variable: "--font-pacifico",
+  subsets: ["latin"],
+  weight: "400",
+});
 
 export const metadata: Metadata = {
   title: "Mañana System",
@@ -17,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body className={saira.className}>
+      <body className={`${saira.className} ${pacifico.variable}`}>
         <div className="flex h-screen w-full">
           <Sidebar />
           <main className="flex-1">{children}</main>
