@@ -1,13 +1,19 @@
 import { useState } from "react";
-import { FormOrderSchema } from "../components/schema";
 
-export function useCreateOrder() {
+type CreateProductData = {
+  name: string;
+  description: string;
+  price: number;
+  image?: string | null;
+};
+
+export function useCreateProduct() {
   const [loading, setLoading] = useState(false);
 
-  async function createOrder(data: FormOrderSchema) {
+  async function createProduct(data: CreateProductData) {
     try {
       setLoading(true);
-      const response = await fetch("/api/orders", {
+      const response = await fetch("api/products", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
@@ -20,12 +26,12 @@ export function useCreateOrder() {
       } else {
         return { success: false, error: result.error };
       }
-    } catch (error) {
+    } catch {
       return { success: false, error: "Erro de conexão" };
     } finally {
       setLoading(false);
     }
   }
 
-  return { createOrder, loading };
+  return { createProduct, loading };
 }

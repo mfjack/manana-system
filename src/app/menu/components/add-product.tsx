@@ -10,10 +10,12 @@ import { Label } from "@radix-ui/react-label";
 import { useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { FormAddProduct, formAddProductSchema } from "./schema";
+import { useCreateProduct } from "../mutation/use-create-product";
 
 export function AddProduct() {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const { createProduct, loading } = useCreateProduct();
 
   const {
     register,
@@ -26,32 +28,59 @@ export function AddProduct() {
     resolver: zodResolver(formAddProductSchema),
   });
 
-  function handleAddProduct(data: FormAddProduct) {
-    console.log("Produto adicionado:", data);
+  async function handleAddProduct(data: FormAddProduct) {
+    try {
+      // Verificar se há arquivo selecionado
+      const file = fileInputRef.current?.files?.[0];
+      let imageUrl = "";
 
-    // Verificar se há arquivo selecionado
-    const file = fileInputRef.current?.files?.[0];
+      if (file) {
+        // Validar tipo de arquivo
+        if (!file.type.startsWith("image/")) {
+          alert("Por favor, selecione apenas arquivos de imagem");
+          return;
+        }
 
-    if (file) {
-      // Validar tipo de arquivo
-      if (!file.type.startsWith("image/")) {
-        alert("Por favor, selecione apenas arquivos de imagem");
-        return;
+        // Validar tamanho do arquivo (max 5MB)
+        if (file.size > 5 * 1024 * 1024) {
+          alert("A imagem deve ter no máximo 5MB");
+          return;
+        }
+
+        // Converter arquivo para base64 ou URL (aqui usaremos uma URL temporária)
+        // Em produção, você faria upload para um serviço como AWS S3, Cloudinary, etc.
+        imageUrl = URL.createObjectURL(file);
       }
 
-      // Validar tamanho do arquivo (max 5MB)
-      if (file.size > 5 * 1024 * 1024) {
-        alert("A imagem deve ter no máximo 5MB");
-        return;
-      }
+      // Converter preço de string formatada para número
+      const priceNumber = parseFloat(data.price.replace(/[R$\s.,]/g, "").replace(",", ".")) || 0;
 
-      console.log("Arquivo selecionado:", file.name, file.type, file.size);
+      // Preparar dados para envio
+      const productData = {
+        name: data.name,
+        description: data.description,
+        price: priceNumber,
+        image: imageUrl || null,
+      };
+
+      // Enviar dados para a API
+      const result = await createProduct(productData);
+
+      if (result.success) {
+        alert("Produto adicionado com sucesso!");
+        setIsOpenModal(false);
+        reset();
+        // Limpar o input de arquivo
+        if (fileInputRef.current) {
+          fileInputRef.current.value = "";
+        }
+      } else {
+        alert(result.error || "Erro ao adicionar produto");
+      }
+    } catch (error) {
+      console.error("Erro ao adicionar produto:", error);
+      alert("Erro inesperado ao adicionar produto");
     }
-
-    // Aqui você pode implementar a lógica para enviar os dados para sua API
-    // incluindo o upload da imagem
-    setIsOpenModal(false);
-    reset();
   }
 
   return (
@@ -107,22 +136,28 @@ export function AddProduct() {
           </div>
 
           <div>
-            <Label htmlFor="picture">Imagem</Label>
+            <Label htmlFor="image">Imagem</Label>
             <Input
-              id="picture"
+              id="image"
               type="file"
               accept="image/*"
               ref={fileInputRef}
             />
-            {errors.picture && <p className="text-red-500 text-xs mt-1">{String(errors.picture.message)}</p>}
+            {errors.image && <p className="text-red-500 text-xs mt-1">{String(errors.image.message)}</p>}
           </div>
 
           <div className="flex items-center justify-end gap-2 mt-6 w-full">
-            <Button type="submit">Adicionar</Button>
+            <Button
+              type="submit"
+              disabled={loading}
+            >
+              {loading ? "Adicionando..." : "Adicionar"}
+            </Button>
             <DialogClose asChild>
               <Button
                 variant="secondary"
                 type="button"
+                disabled={loading}
               >
                 Cancelar
               </Button>
