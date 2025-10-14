@@ -22,7 +22,7 @@ const menuItems = [
 
 export function Sidebar() {
   return (
-    <section className="h-full p-4 border-r lg:w-64 flex flex-col justify-between">
+    <section className="min-h-screen p-4 border-r lg:w-64 flex flex-col justify-between">
       <nav>
         <ul className="flex flex-col gap-2">
           {menuItems.map((item) => (
