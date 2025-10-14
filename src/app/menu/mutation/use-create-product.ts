@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { CreateProductData } from "../types";
+import { FormAddProduct } from "../components/schema";
 
-async function createProductApi(data: CreateProductData) {
+async function createProductApi(data: FormAddProduct) {
   const response = await fetch("/api/products", {
     method: "POST",
     headers: { "Content-Type": "application/json" },

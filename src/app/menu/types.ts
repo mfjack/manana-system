@@ -8,12 +8,12 @@ export type MenuItem = {
   price: number;
 };
 
-export type CreateProductData = {
-  name: string;
-  description: string;
-  price: number;
-  image?: string | null;
-};
+// export type CreateProductData = {
+//   name: string;
+//   description: string;
+//   price: number;
+//   image?: string | null;
+// };
 
 export type DataTableProps<TData, TValue> = {
   columns: ColumnDef<TData, TValue>[];
