@@ -28,9 +28,9 @@ export default function RootLayout({
     <html lang="pt-BR">
       <body className={`${saira.className} ${pacifico.variable}`}>
         <QueryProvider>
-          <div className="flex h-screen w-full">
+          <div className="flex h-screen w-full overflow-hidden">
             <Sidebar />
-            <main className="flex-1">{children}</main>
+            <main className="flex-1 overflow-hidden">{children}</main>
           </div>
         </QueryProvider>
       </body>

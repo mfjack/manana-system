@@ -13,7 +13,7 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
   });
 
   return (
-    <div className="overflow-auto [&::-webkit-scrollbar]:hidden rounded border mt-6">
+    <div className="overflow-auto [&::-webkit-scrollbar]:hidden rounded border mt-6 ">
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (

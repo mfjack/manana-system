@@ -25,7 +25,7 @@ export default function OrderPage() {
   }
 
   return (
-    <section className="h-screen p-4 lg:p-6 flex flex-col overflow-y-auto">
+    <section className="h-screen p-4 lg:p-6 flex flex-col">
       <AddOrder onOrderCreated={refreshOrders} />
       <div className="flex flex-col gap-6 items-start sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 mt-6">
         {orders.length > 0 ? (
