@@ -41,7 +41,7 @@ export function AddProduct() {
       onOpenChange={setIsOpenModal}
     >
       <DialogTrigger asChild>
-        <Button>Adicionar item ao cardápio</Button>
+        <Button className="mt-6 lg:mt-0">Adicionar item ao cardápio</Button>
       </DialogTrigger>
 
       <DialogContent>
