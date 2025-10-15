@@ -2,26 +2,27 @@
 
 import { formatCurrency } from "@/lib/format-price";
 import { ColumnDef } from "@tanstack/react-table";
-import { ProductImage } from "@/components/product-image";
 import { MenuItem } from "../types";
 
 export const columns: ColumnDef<MenuItem>[] = [
-  {
-    accessorKey: "image",
-    header: "Imagem",
-    cell: ({ row }) => {
-      const image = row.getValue("image") as string;
-      const name = row.getValue("name") as string;
+  // {
+  //   accessorKey: "image",
+  //   header: "Imagem",
+  //   cell: ({ row }) => {
+  //     const image = row.getValue("image") as string;
+  //     const name = row.getValue("name") as string;
 
-      return (
-        <ProductImage
-          src={image}
-          alt={`Imagem do ${name}`}
-          size={80}
-        />
-      );
-    },
-  },
+  //     return (
+  //       <Image
+  //         src={image || "/no-image.png"}
+  //         alt={`Imagem do ${name}`}
+  //         width={80}
+  //         height={80}
+  //         className="rounded object-cover"
+  //       />
+  //     );
+  //   },
+  // },
   {
     accessorKey: "name",
     header: "Nome",
