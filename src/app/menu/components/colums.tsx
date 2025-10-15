@@ -23,6 +23,7 @@ export const columns: ColumnDef<MenuItem>[] = [
   //     );
   //   },
   // },
+
   {
     accessorKey: "name",
     header: "Nome",
@@ -32,19 +33,19 @@ export const columns: ColumnDef<MenuItem>[] = [
     },
   },
   {
-    accessorKey: "description",
-    header: "Descrição",
-    cell: ({ row }) => {
-      const description = row.getValue("description") as string;
-      return <span className="text-muted-foreground">{description}</span>;
-    },
-  },
-  {
     accessorKey: "price",
     header: "Preço",
     cell: ({ row }) => {
       const formatted = formatCurrency(row.getValue("price"));
       return <span className="text-green-500 font-medium">{formatted}</span>;
+    },
+  },
+  {
+    accessorKey: "description",
+    header: "Descrição",
+    cell: ({ row }) => {
+      const description = row.getValue("description") as string;
+      return <span className="text-muted-foreground">{description}</span>;
     },
   },
 ];
