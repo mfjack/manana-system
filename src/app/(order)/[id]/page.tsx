@@ -80,7 +80,7 @@ export default function OrderDetailsPage() {
       <header className="border-b bg-white p-4 lg:p-6">
         <div className="flex items-center justify-between">
           <h1 className="text-2xl font-bold">{order.orderName}</h1>
-          <Badge className={cn("text-sm", order.status === "OCCUPIED" ? "bg-red-500" : "bg-emerald-500")}>
+          <Badge className={cn("text-sm", order.status === "OCCUPIED" ? "bg-orange-500" : "bg-emerald-500")}>
             {STATUS_TRANSLATIONS[order.status]}
           </Badge>
         </div>
