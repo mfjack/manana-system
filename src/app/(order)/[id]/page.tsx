@@ -15,6 +15,7 @@ import { formatPrice } from "@/lib/format-price";
 import { cn } from "@/lib/utils";
 import { useGetProduct } from "@/app/menu/query/use-get-product";
 import { useMemo } from "react";
+import { toast } from "sonner";
 
 export default function OrderDetailsPage() {
   const params = useParams();
@@ -36,6 +37,8 @@ export default function OrderDetailsPage() {
       productId,
       quantity: 1,
     });
+
+    toast.success("Produto adicionado com sucesso!");
   }
 
   function handleUpdateQuantity(itemId: string, newQuantity: number) {

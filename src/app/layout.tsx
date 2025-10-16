@@ -3,6 +3,7 @@ import "./styles/globals.css";
 import { Sidebar } from "@/components/sidebar";
 import { Saira, Lobster } from "next/font/google";
 import { QueryProvider } from "@/providers/query-provider";
+import { Toaster } from "@/components/ui/sonner";
 
 const saira = Saira({
   subsets: ["latin"],
@@ -31,6 +32,7 @@ export default function RootLayout({
           <div className="flex h-screen w-full overflow-hidden">
             <Sidebar />
             <main className="flex-1 overflow-hidden">{children}</main>
+            <Toaster />
           </div>
         </QueryProvider>
       </body>
