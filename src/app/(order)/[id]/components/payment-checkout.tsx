@@ -37,7 +37,7 @@ export function PaymentCheckout({ total }: { total: number }) {
           <DialogTitle>Escolha o método de pagamento</DialogTitle>
         </DialogHeader>
 
-        <div className="flex gap-3 text-center w-full justify-between">
+        <div className="flex gap-3 items-center justify-center">
           {paymentMethods.map((method) => (
             <Button
               key={method.id}
