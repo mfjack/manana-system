@@ -40,28 +40,26 @@ export default function OrderDetailsPage() {
     <>
       <header className="border-b bg-white p-4 lg:p-6">
         <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-bold">{order.orderName}</h1>
-            <div className="flex items-center gap-4 mt-1 text-sm text-muted-foreground">
-              <div className="flex items-center gap-1">
-                <Hash className="h-4 w-4" />
-                Comanda {order.orderNumber}
-              </div>
-              <div className="flex items-center gap-1">
-                <Clock className="h-4 w-4" />
-                {new Date(order.createdAt).toLocaleString("pt-BR")}
-              </div>
-            </div>
-          </div>
+          <h1 className="text-2xl font-bold">{order.orderName}</h1>
           <Badge className={cn("text-sm", order.status === "OCCUPIED" ? "bg-red-500" : "bg-emerald-500")}>
             {STATUS_TRANSLATIONS[order.status]}
           </Badge>
         </div>
+        <div className="flex items-center gap-4 mt-1 text-sm text-muted-foreground">
+          <div className="flex items-center gap-1">
+            <Hash className="h-4 w-4" />
+            Comanda {order.orderNumber}
+          </div>
+          <div className="flex items-center gap-1">
+            <Clock className="h-4 w-4" />
+            {new Date(order.createdAt).toLocaleString("pt-BR")}
+          </div>
+        </div>
       </header>
 
-      <main className="p-4 lg:p-6 ">
+      <main className="p-4 lg:p-6 min-h-screen">
         <div className="grid gap-6 lg:grid-cols-2">
-          <Card>
+          <Card className="h-full">
             <CardContent className="space-y-4 px-0 flex flex-col h-full justify-between">
               <div className="space-y-3 p-3">
                 {products.length > 0 ? (
@@ -71,13 +69,16 @@ export default function OrderDetailsPage() {
                 )}
               </div>
               <div className="flex items-center justify-between p-4 bg-muted rounded rounded-t-none ">
-                <span className="font-medium">Total:</span>
-                <span className="text-2xl font-bold text-primary">{formatPrice(order.total)}</span>
+                <span className="font-medium text-muted-foreground">Total:</span>
+                <div className="flex items-center gap-4">
+                  <span className="text-sm lg:text-2xl font-bold text-emerald-500">{formatPrice(order.total)}</span>
+                  <Button>Fechar conta</Button>
+                </div>
               </div>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="h-full">
             <CardContent className="space-y-3 p-3">
               {products.map((product) => (
                 <div
