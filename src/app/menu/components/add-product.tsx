@@ -52,6 +52,8 @@ export function AddProduct() {
         <form
           className="space-y-4 mt-6"
           onSubmit={handleSubmit(handleAddProduct)}
+          aria-label="Formulário para adicionar item ao cardápio"
+          role="form"
         >
           <div>
             <Label htmlFor="name">Nome</Label>
@@ -59,9 +61,20 @@ export function AddProduct() {
               id="name"
               type="text"
               placeholder="Digite o nome do item"
+              aria-required="true"
+              aria-invalid={!!errors.name}
+              aria-describedby={errors.name ? "name-error" : undefined}
               {...register("name")}
             />
-            {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name.message}</p>}
+            {errors.name && (
+              <p
+                id="name-error"
+                className="text-red-500 text-xs mt-1"
+                role="alert"
+              >
+                {errors.name.message}
+              </p>
+            )}
           </div>
 
           <div>
@@ -69,9 +82,20 @@ export function AddProduct() {
             <Textarea
               id="description"
               placeholder="Digite a descrição do item"
+              aria-required="true"
+              aria-invalid={!!errors.description}
+              aria-describedby={errors.description ? "description-error" : undefined}
               {...register("description")}
             />
-            {errors.description && <p className="text-red-500 text-xs mt-1">{errors.description.message}</p>}
+            {errors.description && (
+              <p
+                id="description-error"
+                className="text-red-500 text-xs mt-1"
+                role="alert"
+              >
+                {errors.description.message}
+              </p>
+            )}
           </div>
 
           <div>
@@ -80,6 +104,9 @@ export function AddProduct() {
               id="price"
               type="text"
               placeholder="R$ 0,00"
+              aria-required="true"
+              aria-invalid={!!errors.price}
+              aria-describedby={errors.price ? "price-error" : undefined}
               {...register("price", {
                 setValueAs: parseCurrencyToNumber,
                 onChange: (e) => {
@@ -87,7 +114,15 @@ export function AddProduct() {
                 },
               })}
             />
-            {errors.price && <p className="text-red-500 text-xs mt-1">{errors.price.message}</p>}
+            {errors.price && (
+              <p
+                id="price-error"
+                className="text-red-500 text-xs mt-1"
+                role="alert"
+              >
+                {errors.price.message}
+              </p>
+            )}
           </div>
 
           <div>
@@ -96,8 +131,18 @@ export function AddProduct() {
               id="image"
               type="file"
               accept="image/*"
+              aria-label="Selecione uma imagem para o produto"
+              aria-describedby={errors.image ? "image-error" : undefined}
             />
-            {errors.image && <p className="text-red-500 text-xs mt-1">{String(errors.image.message)}</p>}
+            {errors.image && (
+              <p
+                id="image-error"
+                className="text-red-500 text-xs mt-1"
+                role="alert"
+              >
+                {String(errors.image.message)}
+              </p>
+            )}
           </div>
 
           <div className="flex items-center justify-end gap-2 mt-6 w-full">

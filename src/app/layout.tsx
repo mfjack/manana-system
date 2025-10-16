@@ -31,7 +31,13 @@ export default function RootLayout({
         <QueryProvider>
           <div className="flex h-screen w-full overflow-hidden">
             <Sidebar />
-            <main className="flex-1 overflow-hidden">{children}</main>
+            <main
+              className="flex-1 overflow-hidden"
+              role="main"
+              aria-label="Conteúdo principal"
+            >
+              {children}
+            </main>
             <Toaster />
           </div>
         </QueryProvider>

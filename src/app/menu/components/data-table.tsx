@@ -14,7 +14,10 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
 
   return (
     <div className="overflow-auto [&::-webkit-scrollbar]:hidden rounded border mt-6 ">
-      <Table>
+      <Table
+        role="table"
+        aria-label="Tabela de produtos do cardápio"
+      >
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>

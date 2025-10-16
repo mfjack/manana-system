@@ -35,6 +35,8 @@ export default function OrderPage() {
               className="w-full"
               key={order.id}
               href={`/${order.id}`}
+              aria-label={`Abrir detalhes da comanda ${order.orderNumber}`}
+              tabIndex={0}
             >
               <Card
                 className={cn(

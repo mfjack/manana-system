@@ -18,7 +18,10 @@ export default function MenuPage() {
   }
 
   return (
-    <section className="h-screen p-4 lg:p-6 flex flex-col overflow-y-auto">
+    <section
+      className="h-screen p-4 lg:p-6 flex flex-col overflow-y-auto"
+      aria-label="Página do cardápio"
+    >
       <div className="flex items-start lg:justify-between flex-col lg:flex-row">
         <h1 className="text-2xl font-medium">Cardápio</h1>
         <AddProduct />

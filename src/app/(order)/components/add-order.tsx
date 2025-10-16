@@ -53,6 +53,8 @@ export function AddOrder({ onOrderCreated }: AddOrderProps) {
           <form
             className="space-y-4 mt-6"
             onSubmit={handleSubmit(handleSendForm)}
+            aria-label="Formulário para abrir nova comanda"
+            role="form"
           >
             <div>
               <Label htmlFor="order-name">Nome da comanda</Label>
@@ -60,9 +62,20 @@ export function AddOrder({ onOrderCreated }: AddOrderProps) {
                 id="order-name"
                 type="text"
                 placeholder="Digite o nome da comanda"
+                aria-required="true"
+                aria-invalid={!!errors.orderName}
+                aria-describedby={errors.orderName ? "order-name-error" : undefined}
                 {...register("orderName")}
               />
-              {errors.orderName && <p className="text-red-500 text-xs mt-1">{errors.orderName.message}</p>}
+              {errors.orderName && (
+                <p
+                  id="order-name-error"
+                  className="text-red-500 text-xs mt-1"
+                  role="alert"
+                >
+                  {errors.orderName.message}
+                </p>
+              )}
             </div>
             <div>
               <Label htmlFor="order-number">Número da comanda</Label>
@@ -70,9 +83,20 @@ export function AddOrder({ onOrderCreated }: AddOrderProps) {
                 id="order-number"
                 type="text"
                 placeholder="Digite o número da comanda"
+                aria-required="true"
+                aria-invalid={!!errors.orderNumber}
+                aria-describedby={errors.orderNumber ? "order-number-error" : undefined}
                 {...register("orderNumber")}
               />
-              {errors.orderNumber && <p className="text-red-500 text-xs mt-1">{errors.orderNumber.message}</p>}
+              {errors.orderNumber && (
+                <p
+                  id="order-number-error"
+                  className="text-red-500 text-xs mt-1"
+                  role="alert"
+                >
+                  {errors.orderNumber.message}
+                </p>
+              )}
             </div>
 
             <div className="flex items-center justify-end gap-2 mt-6 w-full">
