@@ -5,7 +5,6 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   compress: true,
   reactStrictMode: true,
-  swcMinify: true,
   productionBrowserSourceMaps: false,
   experimental: {
     optimizePackageImports: [
@@ -15,7 +14,6 @@ const nextConfig: NextConfig = {
       "clsx",
       "tailwind-merge",
     ],
-    swcPlugins: [["next-remove-console", {}]],
   },
   async headers() {
     return [
