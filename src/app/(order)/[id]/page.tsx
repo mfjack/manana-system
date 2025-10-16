@@ -69,11 +69,11 @@ export default function OrderDetailsPage() {
                 )}
               </div>
               <div className="flex items-center justify-between p-4 bg-muted rounded rounded-t-none ">
-                <span className="font-medium text-muted-foreground">Total:</span>
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2">
+                  <span className="font-medium text-muted-foreground">Total:</span>
                   <span className="text-sm lg:text-2xl font-bold text-emerald-500">{formatPrice(order.total)}</span>
-                  <Button>Fechar conta</Button>
                 </div>
+                <Button>Fechar conta</Button>
               </div>
             </CardContent>
           </Card>
