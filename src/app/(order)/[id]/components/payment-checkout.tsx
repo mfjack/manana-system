@@ -37,23 +37,24 @@ export function PaymentCheckout({ total }: { total: number }) {
           <DialogTitle>Escolha o método de pagamento</DialogTitle>
         </DialogHeader>
 
-        <div className="flex gap-3 items-center justify-center">
+        <ul className="flex gap-3 items-center justify-center">
           {paymentMethods.map((method) => (
-            <Button
-              key={method.id}
-              variant={selectedPaymentMethod === method.id ? "secondary" : "ghost"}
-              className={`w-36 h-28 flex flex-col p-8 items-center justify-center border-2 rounded transition-colors ${
-                selectedPaymentMethod === method.id ? "border-gray-500" : "border-gray-200"
-              }`}
-              onClick={() => setSelectedPaymentMethod(method.id)}
-              aria-pressed={selectedPaymentMethod === method.id}
-              type="button"
-            >
-              <method.icon className="mb-2 w-8 h-8" />
-              <h3 className="font-semibold text-base">{method.name}</h3>
-            </Button>
+            <li key={method.id}>
+              <Button
+                variant={selectedPaymentMethod === method.id ? "secondary" : "ghost"}
+                className={`w-36 h-28 flex flex-col p-8 items-center justify-center border-2 rounded transition-colors ${
+                  selectedPaymentMethod === method.id ? "border-gray-500" : "border-gray-200"
+                }`}
+                onClick={() => setSelectedPaymentMethod(method.id)}
+                aria-pressed={selectedPaymentMethod === method.id}
+                type="button"
+              >
+                <method.icon className="mb-2 w-8 h-8" />
+                <h3 className="font-semibold text-base">{method.name}</h3>
+              </Button>
+            </li>
           ))}
-        </div>
+        </ul>
 
         <p className="font-medium flex items-center justify-between border border-emerald-500 rounded p-4 shadow">
           Total a pagar: <span>{formatCurrency(total)}</span>
