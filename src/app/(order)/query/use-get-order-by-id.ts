@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 type Order = {
   id: string;
@@ -49,8 +49,8 @@ export function useGetOrderById(id: string) {
   } = useQuery({
     queryKey: ["order", id],
     queryFn: () => fetchOrderById(id),
-    enabled: !!id, // Só executa se tiver ID
-    retry: false, // Não tenta novamente em caso de erro 404
+    enabled: !!id,
+    retry: false,
   });
 
   return {
