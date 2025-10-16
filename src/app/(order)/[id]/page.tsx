@@ -121,33 +121,33 @@ export default function OrderDetailsPage() {
                         <div className="flex items-center gap-2">
                           <Button
                             variant="outline"
-                            size="sm"
+                            size="icon-sm"
                             onClick={() => handleUpdateQuantity(item.id, item.quantity - 1)}
                             disabled={updatingItem}
                           >
-                            <Minus className="h-3 w-3" />
+                            <Minus />
                           </Button>
                           <span className="min-w-[2rem] text-center font-medium text-xs lg:text-base">
                             {item.quantity}
                           </span>
                           <Button
                             variant="outline"
-                            size="sm"
+                            size="icon-sm"
                             onClick={() => handleUpdateQuantity(item.id, item.quantity + 1)}
                             disabled={updatingItem}
                           >
-                            <Plus className="h-3 w-3" />
+                            <Plus />
                           </Button>
                         </div>
 
                         <Button
                           variant="outline"
-                          size="sm"
+                          size="icon-sm"
                           onClick={() => handleRemoveItem(item.id)}
                           disabled={updatingItem}
                           className="text-red-600 hover:text-red-700 hover:bg-red-50"
                         >
-                          <Trash2 className="h-3 w-3" />
+                          <Trash2 />
                         </Button>
                       </div>
                     </div>
