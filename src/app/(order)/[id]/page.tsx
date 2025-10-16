@@ -59,6 +59,8 @@ export default function OrderDetailsPage() {
       orderId,
       itemId,
     });
+
+    toast.success("Produto removido com sucesso!");
   }
 
   if (orderLoading || itemsLoading) {

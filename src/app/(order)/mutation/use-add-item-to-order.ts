@@ -31,9 +31,9 @@ export function useAddItemToOrder() {
 
       return response.json();
     },
-    onSuccess: (_, variables) => {
-      queryClient.invalidateQueries({ queryKey: ["order-items", variables.orderId] });
-      queryClient.invalidateQueries({ queryKey: ["order", variables.orderId] });
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["order-items"] });
+      queryClient.invalidateQueries({ queryKey: ["order"] });
     },
     onError: (error: Error) => {
       console.error("Erro ao adicionar item:", error.message);

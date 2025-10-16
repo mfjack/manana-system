@@ -27,9 +27,9 @@ export function useUpdateOrderItem() {
 
       return response.json();
     },
-    onSuccess: (data, variables) => {
-      queryClient.invalidateQueries({ queryKey: ["order-items", variables.orderId] });
-      queryClient.invalidateQueries({ queryKey: ["order", variables.orderId] });
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["order-items"] });
+      queryClient.invalidateQueries({ queryKey: ["order"] });
     },
     onError: (error: Error) => {
       console.error("Erro ao remover item:", error.message);
@@ -53,9 +53,9 @@ export function useUpdateOrderItem() {
 
       return response.json();
     },
-    onSuccess: (data, variables) => {
-      queryClient.invalidateQueries({ queryKey: ["order-items", variables.orderId] });
-      queryClient.invalidateQueries({ queryKey: ["order", variables.orderId] });
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["order-items"] });
+      queryClient.invalidateQueries({ queryKey: ["order"] });
     },
     onError: (error: Error) => {
       console.error("Erro ao atualizar item:", error.message);
