@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import "./styles/globals.css";
 import { Sidebar } from "@/components/sidebar";
-import { Saira, Caveat } from "next/font/google";
+import { Saira, Lobster } from "next/font/google";
 import { QueryProvider } from "@/providers/query-provider";
 
 const saira = Saira({
   subsets: ["latin"],
 });
 
-const pacifico = Caveat({
+const pacifico = Lobster({
   variable: "--font-pacifico",
   subsets: ["latin"],
   weight: "400",
