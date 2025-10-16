@@ -14,7 +14,6 @@ const nextConfig: NextConfig = {
       "clsx",
       "tailwind-merge",
     ],
-    // swcPlugins: [["next-remove-console", {}]],
   },
   async headers() {
     return [
