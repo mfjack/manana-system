@@ -3,10 +3,9 @@
 import { notFound, useParams } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Spinner } from "@/components/ui/spinner";
-import { ArrowLeft, Clock, Hash, Plus, User, Minus, Trash2 } from "lucide-react";
-import Link from "next/link";
+import { Clock, Hash, Plus, Minus, Trash2 } from "lucide-react";
 import { useGetOrderById } from "../query/use-get-order-by-id";
 import { useGetOrderItems } from "../query/use-get-order-items";
 import { useAddItemToOrder } from "../mutation/use-add-item-to-order";
@@ -16,6 +15,7 @@ import { cn } from "@/lib/utils";
 import { useGetProduct } from "@/app/menu/query/use-get-product";
 import { useMemo } from "react";
 import { toast } from "sonner";
+import { PaymentCheckout } from "./components/payment-checkout";
 
 export default function OrderDetailsPage() {
   const params = useParams();
@@ -166,7 +166,7 @@ export default function OrderDetailsPage() {
                   <span className="font-medium text-muted-foreground text-xs lg:text-base">Total:</span>
                   <span className="text-xs lg:text-base font-bold text-emerald-500 ">{formatPrice(total)}</span>
                 </div>
-                <Button className="text-xs lg:text-base">Fechar conta</Button>
+                <PaymentCheckout total={total} />
               </div>
             )}
           </CardContent>

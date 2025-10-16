@@ -3,7 +3,7 @@ export const formatCurrency = (value: string | number): string => {
   if (typeof value === "number") {
     // Protege contra valores inválidos
     if (isNaN(value) || !isFinite(value)) {
-      return "R$ 0,00";
+      return "";
     }
 
     return value.toLocaleString("pt-BR", {
@@ -19,7 +19,7 @@ export const formatCurrency = (value: string | number): string => {
 
   // Se estiver vazio ou for apenas espaços, retorna 0
   if (!cleanValue) {
-    return "R$ 0,00";
+    return "";
   }
 
   // Remove tudo que não é dígito
@@ -27,7 +27,7 @@ export const formatCurrency = (value: string | number): string => {
 
   // Se não há números, retorna 0
   if (!numbers || numbers === "0") {
-    return "R$ 0,00";
+    return "";
   }
 
   // Converte para centavos (divide por 100)
@@ -84,7 +84,7 @@ export const parseCurrencyToNumber = (formattedValue: string): number => {
 export const formatPrice = (value: number): string => {
   // Protege contra valores inválidos
   if (typeof value !== "number" || isNaN(value) || !isFinite(value)) {
-    return "R$ 0,00";
+    return "";
   }
 
   // Garante que o valor seja positivo
