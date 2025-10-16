@@ -5,7 +5,7 @@ import { formatCurrency } from "@/lib/format-price";
 import { CreditCard, Banknote, QrCode, LucideIcon } from "lucide-react";
 import { useState } from "react";
 
-type paymentMethodId = "credit_card" | "cash" | "qr_code";
+type paymentMethodId = "cash" | "qr_code";
 
 type PaymentMethod = {
   id: paymentMethodId;
@@ -14,7 +14,6 @@ type PaymentMethod = {
 };
 
 const paymentMethods: PaymentMethod[] = [
-  { id: "credit_card", name: "Crédito", icon: CreditCard },
   { id: "cash", name: "Dinheiro", icon: Banknote },
   { id: "qr_code", name: "QR Code", icon: QrCode },
 ];
