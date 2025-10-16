@@ -74,7 +74,7 @@ export function PaymentCheckout({ total }: { total: number }) {
               }}
             />
             {cashValue && Number(cashValue.replace(/[^\d,-]/g, "").replace(",", ".")) - total > 0 && (
-              <p className="mt-1 text-sm text-red-500 font-bold text-right absolute right-5 top-2.5">
+              <p className="mt-1 text-sm text-red-500 font-bold text-right absolute right-3 top-2.5">
                 Troco: {formatCurrency(Number(cashValue.replace(/[^\d,-]/g, "").replace(",", ".")) - total)}
               </p>
             )}
