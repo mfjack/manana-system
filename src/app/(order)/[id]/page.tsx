@@ -96,7 +96,7 @@ export default function OrderDetailsPage() {
         </div>
       </header>
 
-      <main className="p-4 lg:p-6 max-h-screen flex w-full gap-6">
+      <main className="p-4 lg:p-6 flex w-full gap-4 flex-col lg:flex-row">
         <Card className="h-full w-full">
           <CardContent className="space-y-4 px-0 flex flex-col h-full justify-between">
             <div className="space-y-3 p-3 flex-1">
@@ -147,21 +147,23 @@ export default function OrderDetailsPage() {
                   ))}
                 </div>
               ) : (
-                <p className="text-center text-muted-foreground py-8">Nenhum item adicionado.</p>
+                <p className="text-center text-muted-foreground py-8">Nenhum item adicionado aos pedidos.</p>
               )}
             </div>
 
-            <div className="flex items-center justify-between p-4 bg-muted rounded rounded-t-none">
-              <div className="flex items-center gap-2">
-                <span className="font-medium text-muted-foreground">Total:</span>
-                <span className="text-sm lg:text-2xl font-bold text-emerald-500">{formatPrice(total)}</span>
+            {items.length > 0 && (
+              <div className="flex items-center justify-between p-4 bg-muted rounded rounded-t-none">
+                <div className="flex items-center gap-2">
+                  <span className="font-medium text-muted-foreground">Total:</span>
+                  <span className="text-sm lg:text-2xl font-bold text-emerald-500">{formatPrice(total)}</span>
+                </div>
+                <Button>Fechar conta</Button>
               </div>
-              <Button disabled={items.length === 0}>Fechar conta</Button>
-            </div>
+            )}
           </CardContent>
         </Card>
 
-        <Card className="h-full w-full">
+        <Card className="w-full">
           <CardContent className="space-y-3 p-3">
             {products.map((product) => (
               <div

@@ -10,7 +10,7 @@ type AddItemToOrderData = {
 export function useAddItemToOrder() {
   const queryClient = useQueryClient();
 
-  const { mutate: addItem, isPending: loading } = useMutation({
+  const { mutateAsync: addItem, isPending: loading } = useMutation({
     mutationFn: async ({ orderId, productId, quantity = 1, notes }: AddItemToOrderData) => {
       const response = await fetch(`/api/orders/${orderId}/items`, {
         method: "POST",
@@ -31,8 +31,7 @@ export function useAddItemToOrder() {
 
       return response.json();
     },
-    onSuccess: (data, variables) => {
-      // Invalidar as queries relacionadas para atualizar os dados
+    onSuccess: (_, variables) => {
       queryClient.invalidateQueries({ queryKey: ["order-items", variables.orderId] });
       queryClient.invalidateQueries({ queryKey: ["order", variables.orderId] });
     },

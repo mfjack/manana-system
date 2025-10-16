@@ -55,6 +55,7 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
     });
 
     if (!item) {
+      ("");
       return NextResponse.json({ error: "Item não encontrado" }, { status: 404 });
     }
 
