@@ -125,7 +125,7 @@ export function AddProduct() {
             )}
           </div>
 
-          <div>
+          {/* <div>
             <Label htmlFor="image">Imagem</Label>
             <Input
               id="image"
@@ -143,7 +143,7 @@ export function AddProduct() {
                 {String(errors.image.message)}
               </p>
             )}
-          </div>
+          </div> */}
 
           <div className="flex items-center justify-end gap-2 mt-6 w-full">
             <Button
