@@ -32,6 +32,7 @@ export default function OrderPage() {
         {orders.length > 0 ? (
           orders.map((order) => (
             <Link
+              className="w-full"
               key={order.id}
               href={`/${order.id}`}
             >
