@@ -97,7 +97,7 @@ export default function OrderDetailsPage() {
       </header>
 
       <main className="p-4 lg:p-6 flex w-full gap-4 flex-col lg:flex-row">
-        <Card className="h-full w-full">
+        <Card className="w-full overflow-y-auto lg:max-h-[80vh] [&::-webkit-scrollbar]:hidden">
           <CardContent className="space-y-4 px-0 flex flex-col h-full justify-between">
             <div className="space-y-3 p-3 flex-1">
               {items.length > 0 ? (
@@ -147,12 +147,14 @@ export default function OrderDetailsPage() {
                   ))}
                 </div>
               ) : (
-                <p className="text-center text-muted-foreground py-8">Nenhum item adicionado aos pedidos.</p>
+                <p className="h-full flex justify-center items-center text-muted-foreground">
+                  Nenhum item adicionado aos pedidos.
+                </p>
               )}
             </div>
 
             {items.length > 0 && (
-              <div className="flex items-center justify-between p-4 bg-muted rounded rounded-t-none">
+              <div className="flex items-center justify-between p-4 bg-muted rounded rounded-t-none sticky bottom-0 w-full">
                 <div className="flex items-center gap-2">
                   <span className="font-medium text-muted-foreground">Total:</span>
                   <span className="text-sm lg:text-2xl font-bold text-emerald-500">{formatPrice(total)}</span>
@@ -163,7 +165,7 @@ export default function OrderDetailsPage() {
           </CardContent>
         </Card>
 
-        <Card className="w-full">
+        <Card className="w-full overflow-y-auto lg:max-h-[80vh] [&::-webkit-scrollbar]:hidden">
           <CardContent className="space-y-3 p-3">
             {products.map((product) => (
               <div
