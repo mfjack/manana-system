@@ -3,8 +3,30 @@
 import { prisma } from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET() {
+export async function GET(request: NextRequest) {
+  const { searchParams } = new URL(request.url);
+  const id = searchParams.get("id");
+
   try {
+    if (id) {
+      const order = await prisma.order.findUnique({
+        where: { id },
+        include: {
+          items: {
+            include: {
+              product: true,
+            },
+          },
+        },
+      });
+
+      if (!order) {
+        return NextResponse.json({ success: false, error: "Comanda não encontrada" }, { status: 404 });
+      }
+
+      return NextResponse.json({ success: true, data: order });
+    }
+
     const orders = await prisma.order.findMany({
       include: {
         items: {
@@ -20,7 +42,7 @@ export async function GET() {
 
     return NextResponse.json({ success: true, data: orders });
   } catch (error) {
-    console.error("Erro ao buscar comandas:", error);
+    console.error("Erro ao buscar comanda(s):", error);
     return NextResponse.json({ success: false, error: "Erro interno do servidor" }, { status: 500 });
   }
 }

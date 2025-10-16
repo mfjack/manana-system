@@ -7,6 +7,7 @@ import { AddOrder } from "./components/add-order";
 import { useGetOrders } from "./query/use-get-order";
 import { Spinner } from "@/components/ui/spinner";
 import { OrderStatus } from "@prisma/client";
+import Link from "next/link";
 
 export default function OrderPage() {
   const STATUS_TRANSLATIONS = {
@@ -30,28 +31,32 @@ export default function OrderPage() {
       <div className="flex flex-col gap-6 items-start sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 mt-6">
         {orders.length > 0 ? (
           orders.map((order) => (
-            <Card
+            <Link
               key={order.id}
-              className={cn(
-                "justify-center hover:transition-transform hover:scale-[1.02] cursor-pointer w-full rounded-sm shadow h-24",
-                order.status === OrderStatus.OCCUPIED ? "bg-red-50" : "bg-emerald-50"
-              )}
+              href={`/${order.id}`}
             >
-              <CardContent className="flex flex-col justify-between">
-                <div className="flex items-center justify-between">
-                  <h2 className="text-xl font-medium">{order.orderNumber}</h2>
-                  <Badge
-                    className={cn(
-                      "text-sm rounded-sm",
-                      order.status === OrderStatus.OCCUPIED ? "bg-red-500" : "bg-emerald-500"
-                    )}
-                  >
-                    {STATUS_TRANSLATIONS[order.status as keyof typeof STATUS_TRANSLATIONS]}
-                  </Badge>
-                </div>
-                <h3 className="text-md font-medium mt-2 text-muted-foreground">{order.orderName}</h3>
-              </CardContent>
-            </Card>
+              <Card
+                className={cn(
+                  "justify-center hover:transition-transform hover:scale-[1.02] cursor-pointer w-full rounded-sm shadow h-24",
+                  order.status === OrderStatus.OCCUPIED ? "bg-red-50" : "bg-emerald-50"
+                )}
+              >
+                <CardContent className="flex flex-col justify-between">
+                  <div className="flex items-center justify-between">
+                    <h2 className="text-xl font-medium">{order.orderNumber}</h2>
+                    <Badge
+                      className={cn(
+                        "text-sm rounded-sm",
+                        order.status === OrderStatus.OCCUPIED ? "bg-red-500" : "bg-emerald-500"
+                      )}
+                    >
+                      {STATUS_TRANSLATIONS[order.status as keyof typeof STATUS_TRANSLATIONS]}
+                    </Badge>
+                  </div>
+                  <h3 className="text-md font-medium mt-2 text-muted-foreground">{order.orderName}</h3>
+                </CardContent>
+              </Card>
+            </Link>
           ))
         ) : (
           <p className="text-muted-foreground text-lg text-nowrap">Nenhuma comanda em aberto</p>
