@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogClose, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { formatCurrency } from "@/lib/format-price";
-import { CreditCard, Banknote, QrCode } from "lucide-react";
+import { CreditCard, Banknote, QrCode, LucideIcon } from "lucide-react";
 import { useState } from "react";
 
 type paymentMethodId = "credit_card" | "cash" | "qr_code";
@@ -10,7 +10,7 @@ type paymentMethodId = "credit_card" | "cash" | "qr_code";
 type PaymentMethod = {
   id: paymentMethodId;
   name: string;
-  icon: React.ComponentType<any>;
+  icon: LucideIcon;
 };
 
 const paymentMethods: PaymentMethod[] = [
