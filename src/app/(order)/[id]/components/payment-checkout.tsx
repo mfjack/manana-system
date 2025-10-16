@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogClose, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { formatCurrency } from "@/lib/format-price";
+import { Label } from "@radix-ui/react-label";
 import { CreditCard, Banknote, QrCode, LucideIcon } from "lucide-react";
 import { useState } from "react";
 
@@ -61,10 +62,11 @@ export function PaymentCheckout({ total }: { total: number }) {
         </p>
 
         {selectedPaymentMethod === "cash" && (
-          <div className="flex flex-col w-full">
+          <div className="flex flex-col w-full relative">
             <Input
               type="text"
               placeholder="Digite o valor recebido"
+              className="mt-0"
               value={cashValue}
               onChange={(e) => {
                 const formatted = formatCurrency(e.target.value);
@@ -72,14 +74,14 @@ export function PaymentCheckout({ total }: { total: number }) {
               }}
             />
             {cashValue && Number(cashValue.replace(/[^\d,-]/g, "").replace(",", ".")) - total > 0 && (
-              <p className="mt-1 text-sm text-red-500 font-bold">
+              <p className="mt-1 text-sm text-red-500 font-bold text-right absolute right-5 top-2.5">
                 Troco: {formatCurrency(Number(cashValue.replace(/[^\d,-]/g, "").replace(",", ".")) - total)}
               </p>
             )}
           </div>
         )}
 
-        <div className="flex gap-3 w-full justify-end">
+        <div className="flex gap-3 w-full justify-end mt-6">
           <Button disabled={!selectedPaymentMethod}>Confirmar</Button>
           <DialogClose asChild>
             <Button variant="secondary">Cancelar</Button>
