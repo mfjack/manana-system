@@ -33,10 +33,6 @@ const nextConfig: NextConfig = {
             value: "1; mode=block",
           },
           {
-            key: "Content-Security-Policy",
-            value: "default-src 'self'; img-src 'self' data:; script-src 'self'; style-src 'self' 'unsafe-inline';",
-          },
-          {
             key: "Referrer-Policy",
             value: "strict-origin-when-cross-origin",
           },
