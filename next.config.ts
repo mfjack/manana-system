@@ -6,7 +6,16 @@ const nextConfig: NextConfig = {
   compress: true,
   reactStrictMode: true,
   productionBrowserSourceMaps: false,
-
+  experimental: {
+    optimizePackageImports: [
+      "lucide-react",
+      "@radix-ui/react-slot",
+      "class-variance-authority",
+      "clsx",
+      "tailwind-merge",
+    ],
+    swcPlugins: [["next-remove-console", {}]],
+  },
   async headers() {
     return [
       {
